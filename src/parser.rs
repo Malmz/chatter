@@ -41,6 +41,10 @@ impl<'a> Parser<'a> {
         }
     }
 
+    pub fn parse<T: Parse>(&mut self) -> Result<T> {
+        T::parse(self)
+    }
+
     pub fn text(&self, span: Span) -> &str {
         &self.lexer.source()[span.to_range()]
     }
